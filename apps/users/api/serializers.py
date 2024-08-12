@@ -30,3 +30,10 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         model = User
         #Datos que va a poder actualizar
         fields = ['first_name', 'last_name', 'Rol_persona','Cedula_persona', 'Edad_persona', 'Telefono_persona']
+
+
+class UserListView(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        #datos de las persona o listra todoas la persona
+        fields = '__all__'
