@@ -1,3 +1,7 @@
+#agrego esto 
+from rest_framework import generics
+from rest_framework.permissions import AllowAny  # Importa AllowAny
+
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
@@ -30,3 +34,8 @@ class UserView(APIView):
             return Response(serializer.data)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]  # Permitir acceso a cualquier usuario
