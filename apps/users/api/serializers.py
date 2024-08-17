@@ -4,18 +4,25 @@ from apps.roles.api.serializer import RolSerializer
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = User
-        fields = ['id','email',  'Cedula_persona', 'Edad_persona', 'Telefono_persona','Rol_persona']
+        fields = ['id', 'username', 'email', 'Cedula_persona', 'Edad_persona', 'Telefono_persona', 'Rol_persona', 'password']
 
     def create(self, validated_data):
+        username = validated_data.get('username')
+        if not username:
+            raise serializers.ValidationError({"username": "This field cannot be empty."})
+
+        # Eliminar espacios en blanco adicionales
+        validated_data['username'] = username.strip()
+
         password = validated_data.pop('password', None)
         instance = self.Meta.model(**validated_data)
         if password is not None:
             instance.set_password(password)
         instance.save()
         return instance
+
 
 #Aca vamos a crear una clase que va a retornar todo menos el password.
 class UserSerializer(serializers.ModelSerializer):
