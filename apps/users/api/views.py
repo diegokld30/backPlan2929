@@ -39,3 +39,14 @@ class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]  # Permitir acceso a cualquier usuario
+
+class UserDetailView(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = 'id'  # Esto indicará que se debe buscar al usuario por el campo 'id'
+
+class UserUpdateByIdView(generics.RetrieveUpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserUpdateSerializer
+    lookup_field = 'id'
+    #permission_classes = [IsAuthenticated]  # esto es para que la vista requiera autenticación
