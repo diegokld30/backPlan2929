@@ -12,5 +12,6 @@ class Movimiento(models.Model):
     tipo_movimiento=models.ForeignKey(TipoMovimiento, on_delete=SET_NULL, null=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_modificacion = models.DateTimeField(auto_now=True)
-
+    def __str__(self):
+        return str(self.persona_movimiento)
 
