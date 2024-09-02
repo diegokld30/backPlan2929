@@ -18,4 +18,4 @@ class FichaWriteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ficha
-        fields = ['id', 'persona_ficha', 'programa', 'date_created', 'date_modified']
+        fields = ['id_ficha','slug', 'persona_ficha', 'programa', 'date_created', 'date_modified']
