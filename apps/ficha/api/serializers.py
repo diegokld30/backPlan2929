@@ -10,7 +10,7 @@ class FichaSerializer(serializers.ModelSerializer):
     programa = ProgramaSerializer()
     class Meta:
         model = Ficha
-        fields = ['id','persona_ficha', 'programa', 'date_created', 'date_modified']
+        fields = ['id','id_ficha','slug', 'persona_ficha', 'programa', 'date_created', 'date_modified']
 
 class FichaWriteSerializer(serializers.ModelSerializer):
     persona_ficha = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
