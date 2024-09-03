@@ -14,9 +14,16 @@ class ElementoMaterial(models.Model):
     stock = models.IntegerField(default=0)
     unidad_medida = models.CharField(max_length=255)
     producto_perecedero = models.BooleanField(default=False)
-    FechaDevencimiento = models.DateTimeField(auto_created=True)
+    FechaDevencimiento = models.DateTimeField(null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if self.producto_perecedero and not self.FechaDevencimiento:
+            raise ValueError("Debe proporcionar una fecha de vencimiento para un producto perecedero.")
+        elif not self.producto_perecedero:
+            self.FechaDevencimiento = None
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.CodigoSena_Material
