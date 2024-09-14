@@ -1,8 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
 
-from apps.tipo_movimiento.api.serializers import TipoMovimientoSerializer
-from apps.tipo_movimiento.models import TipoMovimiento
+from apps.tipo_sitio.api.serializers import Tipo_sitioSerializer
+from apps.tipo_sitio.models import Tipo_sitio
 
-class TipoMovimientoViewSet(ModelViewSet):
-    serializer_class = TipoMovimientoSerializer
-    queryset = TipoMovimiento.objects.all()
+class TipoSitioViewSet(ModelViewSet):
+    serializer_class = Tipo_sitioSerializer
+    queryset = Tipo_sitio.objects.all()
